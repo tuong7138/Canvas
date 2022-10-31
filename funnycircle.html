@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="mycanvas" width="1000px" height="600px"></canvas>
+</body>
+</html>
+<script>
+   function Circle(x, y, radius,color){
+   this.x = x;
+   this.y = y;
+   this.radius = radius;
+   this.color=color;
+}
+//hinh tron
+function createCircle(){
+    let ctx = document.getElementById("mycanvas").getContext("2d");
+    let circle= new Circle(500, 500, 80);
+    ctx.beginPath();
+    ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+    ctx.fill();
+}
+
+createCircle();
+//hinh tron co ban kinh ngau nhien
+function randomC(){
+    let ctx = document.getElementById("mycanvas").getContext("2d");
+    // let Circle2= new Circle(100,100,Math.floor(Math.random()*100))
+    let radius=Math.floor(Math.random()*100);
+    let Circle2=new Circle(100,100,radius);
+    ctx.beginPath();
+    ctx.arc(Circle2.x,Circle2.y,Circle2.radius,0,2*Math.PI)
+    ctx.fill();
+
+}
+randomC();
+
+function getRandomHex(){
+    return Math.floor(Math.random()*255);
+}
+
+function getRandomColor(){
+   let red = getRandomHex();
+   let green = getRandomHex();
+   let blue = getRandomHex();
+	 return "rgb(" + red + "," + blue + "," + green +")";
+}
+
+function randomColor(){
+    var ctx = document.getElementById("mycanvas").getContext("2d");
+    let radius = Math.floor(Math.random() * 80);
+    let circle= new Circle(Math.floor(Math.random()*1000),Math.floor(Math.random()*600),Math.floor(Math.random()*100));
+    ctx.beginPath();
+    ctx.arc(circle.x, circle.y, circle.radius, 0,  Math.PI);
+    ctx.fillStyle = getRandomColor();
+    ctx.fill();
+}
+
+for(let i=0;i<20;i++){
+    randomColor();
+}
+
+</script>
