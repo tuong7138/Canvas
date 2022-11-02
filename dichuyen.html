@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="Mycanvas" width="500px" height="500px"></canvas>
+    <h1 id="haha">test</h1>
+</body>
+</html>
+<script>
+   class hinhChuNhat{
+    constructor(q,w,e,r,color){
+        this.toaDox=q
+        this.toaDoy=w
+        this.rong=e
+        this.dai=r
+        this.color=color;
+    }
+    drawmove(){
+        let ctx=document.getElementById('Mycanvas').getContext('2d');
+        ctx.clearRect(0,0,1000,600);
+        ctx.beginPath();
+        ctx.rect(this.toaDox,this.toaDoy,this.rong,this.dai);
+        ctx.fillStyle=this.color
+        ctx.fill();
+    }
+    randomColor() {
+            let rgb1 = Math.floor(Math.random() * 255);
+            let rgb2 = Math.floor(Math.random() * 255);
+            let rgb3 = Math.floor(Math.random() * 255);
+            this.color= "rgb(" + rgb1 + "," + rgb2 + "," + rgb3 + ")";
+        }
+   
+   }
+   hcn1=new hinhChuNhat(5,5,100,100);
+   let speedX=50; //buoc pahi o ngoai de co the reset setinterval neu khong se bi khoi tao lai let
+   let speedY=50;
+   //buoc phai setinterval ben trong vi neu tao function thi buoc phai co bien khi setinterval chay thi bien se lai duoc nap vao function khien ham bi loi
+  setInterval(()=>
+  {
+    hcn1.drawmove();
+    hcn1.toaDox+=speedX;
+    hcn1.toaDoy+=speedY;
+    if(hcn1.toaDox+50>=500||hcn1.toaDox<25){
+        speedX=-speedX;
+        hcn1.randomColor()
+    }
+    if(hcn1.toaDoy+50>=500||hcn1.toaDoy<25){
+        speedY=-speedY;
+        hcn1.randomColor()
+    }
+  },100)
+   
+</script>
